@@ -11,7 +11,7 @@ class BaseRobot:
             self,
             name: str,
             weight: int,
-            coords: list[int, int] = None
+            coords: list[int] = None
     ) -> None:
         self.name = name
         self.weight = weight
@@ -29,7 +29,7 @@ class BaseRobot:
     def go_left(self, step: int = 1) -> None:
         self.coords[0] -= step
 
-    def get_info(self) -> str | None:
+    def get_info(self) -> str:
         return f"Robot: {self.name}, Weight: {self.weight}"
 
 
@@ -38,7 +38,7 @@ class FlyingRobot(BaseRobot):
             self,
             name: str,
             weight: int,
-            coords: list[int, int, int] = None
+            coords: list[int] = None
     ) -> None:
         super().__init__(name, weight)
         self.coords = coords if coords is not None else [0, 0, 0]
@@ -56,7 +56,7 @@ class DeliveryDrone(FlyingRobot):
             name: str,
             weight: int,
             max_load_weight: int,
-            coords: list[int, int, int] = None,
+            coords: list[int] = None,
             current_load: Optional[Cargo] = None
     ) -> None:
         super().__init__(name, weight, coords)
