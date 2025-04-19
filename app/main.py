@@ -1,4 +1,4 @@
-from typing import Optional
+from typing import Tuple
 
 
 class Cargo:
@@ -11,7 +11,7 @@ class BaseRobot:
             self,
             name: str,
             weight: int,
-            coords: list[int] = None
+            coords: tuple[int, int] = None
     ) -> None:
         self.name = name
         self.weight = weight
@@ -38,7 +38,7 @@ class FlyingRobot(BaseRobot):
             self,
             name: str,
             weight: int,
-            coords: list[int] = None
+            coords: tuple[int, int, int] = None
     ) -> None:
         super().__init__(name, weight)
         self.coords = coords if coords is not None else [0, 0, 0]
@@ -56,10 +56,11 @@ class DeliveryDrone(FlyingRobot):
             name: str,
             weight: int,
             max_load_weight: int,
-            coords: list[int] = None,
-            current_load: Optional[Cargo] = None
+            coords: tuple[int, int, int] = None,
+            current_load: Cargo = None
     ) -> None:
-        super().__init__(name, weight, coords)
+        super().__init__(name, weight)
+        self.coords = coords if coords is not None else [0, 0, 0]
         self.max_load_weight = max_load_weight
         self.current_load = current_load
 
